@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:mvc="http://www.springframework.org/schema/mvc" xmlns:jpa="http://www.springframework.org/schema/data/jpa"
+	xmlns:rabbit="http://www.springframework.org/schema/rabbit"
+	xmlns:cloud="http://www.springframework.org/schema/cloud" xmlns:jdbc="http://www.springframework.org/schema/jdbc"
+	xmlns:util="http://www.springframework.org/schema/util"
+	xsi:schemaLocation="http://www.springframework.org/schema/mvc 
+                           http://www.springframework.org/schema/mvc/spring-mvc-4.2.xsd
+                           http://www.springframework.org/schema/beans 
+                           http://www.springframework.org/schema/beans/spring-beans.xsd
+                           http://www.springframework.org/schema/context 
+                           http://www.springframework.org/schema/context/spring-context-4.2.xsd
+                           http://www.springframework.org/schema/data/jpa 
+                           http://www.springframework.org/schema/data/jpa/spring-jpa.xsd
+                           http://www.springframework.org/schema/rabbit
+           				   http://www.springframework.org/schema/rabbit/spring-rabbit-1.5.xsd
+           				   http://www.springframework.org/schema/jdbc 
+           				   http://www.springframework.org/schema/jdbc/spring-jdbc.xsd">
+
+	<context:annotation-config />
+
+
+	<context:property-placeholder location="classpath:maui.properties" />
+	<context:component-scan base-package="dtic.mil.mauitagger.controller" />
+
+	<mvc:annotation-driven />
+
+	<bean id="mauiManagerTarget" class="dtic.mil.mauitagger.manager.MauiManager"
+		scope="prototype">
+		<constructor-arg value="${maui.vocabularypath}" />
+		<constructor-arg value="${maui.modelpath}" />
+	</bean>
+
+	<bean id="poolTargetSource" class="org.springframework.aop.target.CommonsPool2TargetSource">
+		<property name="targetBeanName" value="mauiManagerTarget" />
+		<property name="minIdle" value="1" />
+		<property name="maxSize" value="3" />
+	</bean>
+
+	<bean id="mauiManager" class="org.springframework.aop.framework.ProxyFactoryBean">
+		<property name="targetSource" ref="poolTargetSource" />
+	</bean>
+</beans>

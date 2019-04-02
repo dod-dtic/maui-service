@@ -1,0 +1,178 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<groupId>dtic.mil</groupId>
+	<artifactId>mauiservice</artifactId>
+	<version>1.0</version>
+	<packaging>war</packaging>
+	<name>MauiService</name>
+	<description>Maui Tagger Web Service</description>
+
+	<dependencies>
+		<dependency>
+			<groupId>javax.servlet.jsp</groupId>
+			<artifactId>jsp-api</artifactId>
+			<version>${jsp.version}</version>
+			<scope>provided</scope>
+		</dependency>
+		<dependency>
+			<groupId>com.entopix</groupId>
+			<artifactId>maui</artifactId>
+			<version>1.3.1-RELEASE</version>
+		</dependency>
+		<dependency>
+			<groupId>javax.servlet</groupId>
+			<artifactId>servlet-api</artifactId>
+			<version>${servlet.api.version}</version>
+			<scope>provided</scope>
+		</dependency>
+		<dependency>
+			<groupId>javax.servlet</groupId>
+			<artifactId>jstl</artifactId>
+			<version>1.2</version>
+		</dependency>
+		<dependency>
+			<groupId>junit</groupId>
+			<artifactId>junit</artifactId>
+			<version>3.8.1</version>
+			<scope>test</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.codehaus.plexus</groupId>
+			<artifactId>plexus-utils</artifactId>
+			<version>1.1</version>
+		</dependency>
+		<dependency>
+			<groupId>xml-apis</groupId>
+			<artifactId>xml-apis</artifactId>
+			<version>1.4.01</version>
+		</dependency>
+		<dependency>
+			<groupId>log4j</groupId>
+			<artifactId>log4j</artifactId>
+			<version>1.2.17</version>
+			<scope>runtime</scope>
+		</dependency>
+		<dependency>
+			<groupId>com.fasterxml.jackson.core</groupId>
+			<artifactId>jackson-databind</artifactId>
+			<version>2.8.8</version>
+		</dependency>
+
+		<!-- For Spring Framework -->
+		<!-- https://mvnrepository.com/artifact/org.apache.commons/commons-pool2 -->
+		<dependency>
+			<groupId>org.apache.commons</groupId>
+			<artifactId>commons-pool2</artifactId>
+			<version>2.4.2</version>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-webmvc</artifactId>
+			<version>${spring.web.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-orm</artifactId>
+			<version>${spring.web.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework.security</groupId>
+			<artifactId>spring-security-web</artifactId>
+			<version>${spring.security.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework.security</groupId>
+			<artifactId>spring-security-config</artifactId>
+			<version>${spring.security.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.tuckey</groupId>
+			<artifactId>urlrewritefilter</artifactId>
+			<version>4.0.3</version>
+		</dependency>
+		<dependency>
+			<groupId>commons-configuration</groupId>
+			<artifactId>commons-configuration</artifactId>
+			<version>1.9</version>
+		</dependency>
+	</dependencies>
+
+	<build>
+		<!-- finalName>mauitagger</finalName -->
+		<plugins>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-compiler-plugin</artifactId>
+				<version>${compiler.version}</version>
+				<configuration>
+					<source>${jdk.version}</source>
+					<target>${jdk.version}</target>
+					<meminitial>128m</meminitial>
+					<maxmem>512m</maxmem>
+				</configuration>
+			</plugin>
+		</plugins>
+	</build>
+	<properties>
+		<!-- Application settings -->
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+		<copyright.year>2017</copyright.year>
+
+		<web.framework>spring</web.framework>
+		<amp.genericCore>true</amp.genericCore>
+		<amp.fullSource>false</amp.fullSource>
+		<jdk.version>1.8</jdk.version>
+		<maven.javadoc.skip>true</maven.javadoc.skip>
+		<compiler.version>3.3</compiler.version>
+
+		<!-- dependencies -->
+		<jackson.core.asl.version>1.9.13</jackson.core.asl.version>
+		<jackson.mapper.asl.version>1.9.13</jackson.mapper.asl.version>
+		<joda.time.version>2.1</joda.time.version>
+		<guava.version>12.0</guava.version>
+
+		<jpa.api.version>2.0-cr-1</jpa.api.version>
+		<persistence.api.version>1.0.2</persistence.api.version>
+		<cglib.version>2.2</cglib.version>
+		<commons.configuration.version>1.9</commons.configuration.version>
+		<mongo.java.driver.version>2.12.4</mongo.java.driver.version>
+
+		<commons.fileupload.version>1.2.1</commons.fileupload.version>
+		<apache.commons.io.version>2.4</apache.commons.io.version>
+		<displaytag.version>1.2</displaytag.version>
+		<spring.security.version>4.0.4.RELEASE</spring.security.version>
+		<spring.web.version>4.2.5.RELEASE</spring.web.version>
+		<springmodules.validation.version>0.8</springmodules.validation.version>
+
+		<!-- Testing dependency versions -->
+
+		<skipTests>true</skipTests>
+
+		<cargo.version>1.2.4</cargo.version>
+		<jmock.version>2.5.1</jmock.version>
+		<jsp.version>2.1</jsp.version>
+		<junit.version>4.10</junit.version>
+		<servlet.api.version>2.5</servlet.api.version>
+		<subethasmtp.wiser.version>1.2</subethasmtp.wiser.version>
+		<spring.test.version>4.2.5.RELEASE</spring.test.version>
+		<junit.dep.version>4.10</junit.dep.version>
+
+
+
+		<slf4j.version>1.7.12</slf4j.version>
+		<log4j.version>1.2.17</log4j.version>
+		<log4j12.version>${slf4j.version}</log4j12.version>
+
+		<!-- Owasp Dependency Versions -->
+		<owasp.encoder.version>1.1.1</owasp.encoder.version>
+
+		<timestamp>${maven.build.timestamp}</timestamp>
+		<buildnumber>1</buildnumber>
+		<maven.build.timestamp.format>yyyy-MM-dd HH:mm</maven.build.timestamp.format>
+		<maven.build.timestamp.format>yyyy-MM-dd HH:mm</maven.build.timestamp.format>
+
+
+	</properties>
+
+</project>
