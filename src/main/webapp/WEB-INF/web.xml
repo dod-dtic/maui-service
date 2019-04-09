@@ -12,12 +12,12 @@
 
 	<context-param>
 		<param-name>model_location</param-name>
-		<param-value>/d2/config/mauitagger/keyword_1800_model</param-value>
+		<param-value>/path/to/model/file</param-value>
 	</context-param>
 
 	<context-param>
 		<param-name>thesaurus_location</param-name>
-		<param-value>/d2/config/mauitagger/dtic_thes.rdf</param-value>
+		<param-value>path/to/vocab/file</param-value>
 	</context-param>
 
 
